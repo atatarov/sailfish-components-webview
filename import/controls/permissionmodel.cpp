@@ -132,18 +132,19 @@ void PermissionModel::handleRecvObserve(const QString &message, const QVariant &
 
 void PermissionModel::setPermissionList(const QVariantList &data)
 {
-    beginResetModel();
-
+    beginRemoveRows(QModelIndex(), 0, m_permissionList.count());
     m_permissionList.clear();
+    endRemoveRows();
 
     for (const auto &iter : data) {
+        beginInsertRows(QModelIndex(), m_permissionList.count(), m_permissionList.count());
         QVariantMap varMap = iter.toMap();
         m_permissionList.append(Permission(varMap.value("uri").toString(),
                                            varMap.value("type").toString(),
                                            PermissionManager::intToCapability(varMap.value("capability").toInt()),
                                            PermissionManager::intToExpiration(varMap.value("expireType").toInt())));
+        endInsertRows();
     }
-    endResetModel();
     emit countChanged();
 }
 
