@@ -1,7 +1,8 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 Jolla Ltd.
+** Copyright (c) 2016 Jolla Ltd.
 ** Contact: Raine Makelainen <raine.makelainen@jolla.com>
+** Copyright (c) 2021 Open Mobile Platform LLC.
 **
 ****************************************************************************/
 
@@ -14,7 +15,7 @@ import QtQuick 2.2
 QtObject {
     property var pageStack
     property QtObject contentItem
-    readonly property var listeners: ["embed:filepicker", "embed:selectasync"]
+    readonly property var listeners: ["embed:filepicker", "embed:selectasync", "embedui:downloadpicker"]
 
     // Defer compilation of picker components
     readonly property string _multiSelectComponentUrl: Qt.resolvedUrl("MultiSelectDialog.qml")
